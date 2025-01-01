@@ -16,16 +16,14 @@ public class SimpleDestinationUsingInjectedIntegrationMapperTest {
     @Test
     public void givenSourceToDestination_whenMaps_thenNameEnriched() {
         // Given
-        SimpleSource source = new SimpleSource();
-        source.setName("Bob");
-        source.setDescription("The Builder");
+        SimpleSource source = new SimpleSource("Bob", "The Builder");
 
         // When
         SimpleDestination destination = mapper.sourceToDestination(source);
 
         // Then
         assertThat(destination).isNotNull();
-        assertThat(destination.getName()).isEqualTo("-:: Bob ::-");
-        assertThat(destination.getDescription()).isEqualTo("The Builder");
+        assertThat(destination.name()).isEqualTo("-:: Bob ::-");
+        assertThat(destination.description()).isEqualTo("The Builder");
     }
 }

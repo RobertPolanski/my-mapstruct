@@ -13,7 +13,7 @@ public abstract class SimpleDestinationUsingInjectedServiceMapper {
     @Autowired
     protected SimpleService simpleService;
 
-    @Mapping(target = "name", expression = "java(simpleService.enrichName(source.getName()))")
+    @Mapping(target = "name", expression = "java(simpleService.enrichName(source.name()))")
     public abstract SimpleDestination sourceToDestination(SimpleSource source);
 
     public abstract SimpleSource destinationToSource(SimpleDestination destination);

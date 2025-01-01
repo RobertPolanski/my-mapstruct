@@ -16,25 +16,21 @@ public class SimpleSourceDestinationMapperIntegrationTest {
 
     @Test
     public void givenSourceToDestination_whenMaps_thenCorrect() {
-        SimpleSource simpleSource = new SimpleSource();
-        simpleSource.setName("SourceName");
-        simpleSource.setDescription("SourceDescription");
+        SimpleSource simpleSource = new SimpleSource("SourceName", "SourceDescription");
 
         SimpleDestination destination = simpleSourceDestinationMapper.sourceToDestination(simpleSource);
 
-        assertEquals(simpleSource.getName(), destination.getName());
-        assertEquals(simpleSource.getDescription(), destination.getDescription());
+        assertEquals(simpleSource.name(), destination.name());
+        assertEquals(simpleSource.description(), destination.description());
     }
 
     @Test
     public void givenDestinationToSource_whenMaps_thenCorrect() {
-        SimpleDestination destination = new SimpleDestination();
-        destination.setName("DestinationName");
-        destination.setDescription("DestinationDescription");
+        SimpleDestination destination = new SimpleDestination("DestinationName", "DestinationDescription");
 
         SimpleSource source = simpleSourceDestinationMapper.destinationToSource(destination);
 
-        assertEquals(destination.getName(), source.getName());
-        assertEquals(destination.getDescription(), source.getDescription());
+        assertEquals(destination.name(), source.name());
+        assertEquals(destination.description(), source.description());
     }
 }
