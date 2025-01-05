@@ -15,6 +15,7 @@ public interface EmployeeMapper {
     @Mapping(target = "employeeId", source = "entity.id")
     @Mapping(target = "employeeName", source = "entity.name")
     @Mapping(target = "employeeStartDt", source = "entity.startDt", dateFormat = "dd-MM-yyyy HH:mm:ss")
+    @Mapping(target = "notMappedProperty", ignore = true)
     EmployeeDTO employeeToEmployeeDTO(Employee entity);
 
     @Mapping(target = "id", source = "dto.employeeId")

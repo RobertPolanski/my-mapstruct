@@ -13,6 +13,5 @@ public class EmployeeDTO {
     private String employeeName;
     private DivisionDTO division;
     private String employeeStartDt;
-
-
+    private String notMappedProperty;
 }
