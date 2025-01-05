@@ -18,8 +18,8 @@ public class PersonMapperUnitTest {
         PersonDTO personDto = PersonMapper.INSTANCE.personToPersonDTO(entity);
 
         assertNull(entity.getId());
-        assertNotNull(personDto.getId());
-        assertEquals(personDto.getName(), entity.getName());
+        assertNotNull(personDto.id());
+        assertEquals(personDto.name(), entity.getName());
     }
 
     @Test
@@ -31,6 +31,6 @@ public class PersonMapperUnitTest {
         // When mapping to PersonDTO
         PersonDTO personDto = PersonMapper.INSTANCE.personToPersonDTO(entity);
         // And the name in PersonDTO should be the default value "anonymous"
-        assertEquals("anonymous", personDto.getName());
+        assertEquals("anonymous", personDto.name());
     }
 }
