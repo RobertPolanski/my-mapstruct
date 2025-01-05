@@ -13,6 +13,8 @@ public class Employee {
 
     private int id;
     private String name;
+    private int height;
     private Division division;
     private Date startDt;
+    private Address address;
 }

@@ -27,11 +27,13 @@ public class EmployeeMapperUnitTest {
         EmployeeDTO dto = new EmployeeDTO();
         dto.setEmployeeId(1);
         dto.setEmployeeName("John");
+        dto.setHeight(181);
 
         Employee entity = mapper.employeeDTOtoEmployee(dto);
 
         assertEquals(dto.getEmployeeId(), entity.getId());
         assertEquals(dto.getEmployeeName(), entity.getName());
+        assertEquals(dto.getHeight(), entity.getHeight());
     }
 
     @Test
@@ -39,11 +41,15 @@ public class EmployeeMapperUnitTest {
         Employee entity = new Employee();
         entity.setId(1);
         entity.setName("John");
+        entity.setHeight(181);
 
         EmployeeDTO dto = mapper.employeeToEmployeeDTO(entity);
 
-        assertEquals(dto.getEmployeeId(), entity.getId());
-        assertEquals(dto.getEmployeeName(), entity.getName());
+        assertEquals(entity.getId(), dto.getEmployeeId());
+        assertEquals(entity.getName(), dto.getEmployeeName());
+        assertEquals(entity.getHeight(), dto.getHeight());
+        assertEquals(entity.getHeight(), dto.getVolume().volume());
+        assertEquals("High", dto.getVolume().description());
     }
 
     @Test
