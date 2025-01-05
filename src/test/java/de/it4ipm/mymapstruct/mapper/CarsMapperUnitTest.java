@@ -13,7 +13,7 @@ import org.mapstruct.factory.Mappers;
 
 class CarsMapperUnitTest {
 
-    private CarsMapper sut = Mappers.getMapper(CarsMapper.class);
+    private final CarsMapper carsMapper = Mappers.getMapper(CarsMapper.class);
 
     @Test
     void testGivenSubTypeElectric_mapsModifiedFieldsToSuperTypeDto_whenBeforeAndAfterMappingMethodscarCalled() {
@@ -21,7 +21,7 @@ class CarsMapperUnitTest {
         car.setId(12);
         car.setName("Tesla_Model_C");
         
-        CarDTO carDto = sut.toCarDto(car);
+        CarDTO carDto = carsMapper.toCarDto(car);
         
         assertEquals("TESLA_MODEL_C", carDto.getName());
         assertEquals(FuelType.ELECTRIC, carDto.getFuelType());
@@ -33,7 +33,7 @@ class CarsMapperUnitTest {
         car.setId(11);
         car.setName("Tesla_Model_X");
         
-        CarDTO carDto = sut.toCarDto(car);
+        CarDTO carDto = carsMapper.toCarDto(car);
         
         assertEquals("TESLA_MODEL_X", carDto.getName());
         assertEquals(FuelType.BIO_DIESEL, carDto.getFuelType());

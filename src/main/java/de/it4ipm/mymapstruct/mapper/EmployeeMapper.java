@@ -47,8 +47,8 @@ public abstract class EmployeeMapper {
     }
 
     public boolean mapOutsider(Employee entity) {
-        //todo finish
-        return true;
+        if(entity.getAddress() == null) {return true;}
+        return !entity.getAddress().getCity().equals("City");
     }
 
     protected abstract Address mapAddress(EmployeeDTO dto);
