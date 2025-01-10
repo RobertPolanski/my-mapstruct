@@ -2,6 +2,9 @@ package de.it4ipm.mymapstruct.mapper;
 
 import de.it4ipm.mymapstruct.dto.DivisionDTO;
 import de.it4ipm.mymapstruct.dto.EmployeeDTO;
+import de.it4ipm.mymapstruct.dto.VolumeDTO;
+import de.it4ipm.mymapstruct.entity.Address;
+import de.it4ipm.mymapstruct.entity.AddressFactory;
 import de.it4ipm.mymapstruct.entity.Division;
 import de.it4ipm.mymapstruct.entity.Employee;
 import org.junit.jupiter.api.Test;
@@ -56,22 +59,33 @@ public class EmployeeMapperUnitTest {
     public void givenEmpDTONestedMappingToEmp_whenMaps_thenCorrect() {
         EmployeeDTO dto = new EmployeeDTO();
         dto.setDivision(new DivisionDTO(1, "Division1"));
+        dto.setVolume(new VolumeDTO(1, "Volume1"));
+
+        AddressFactory addressFactory = new AddressFactory();
+        Address factoryAddress = addressFactory.createAddress();
 
         Employee entity = mapper.employeeDTOtoEmployee(dto);
 
         assertEquals(dto.getDivision().getId(), entity.getDivision().getId());
         assertEquals(dto.getDivision().getName(), entity.getDivision().getName());
+        assertEquals(factoryAddress.getCity(), entity.getAddress().getCity());
+        assertEquals(factoryAddress.getStreet(), entity.getAddress().getStreet());
+        assertEquals(factoryAddress.getZip(), entity.getAddress().getZip());
+        assertEquals(180, entity.getHeight());
     }
 
     @Test
     public void givenEmployeeWithNestedMappingToEmployeeDTO_whenMaps_thenCorrect() {
         Employee entity = new Employee();
         entity.setDivision(new Division(1, "Division1"));
+        entity.setHeight(181);
 
         EmployeeDTO dto = mapper.employeeToEmployeeDTO(entity);
 
-        assertEquals(dto.getDivision().getId(), entity.getDivision().getId());
-        assertEquals(dto.getDivision().getName(), entity.getDivision().getName());
+        assertEquals(entity.getDivision().getId(), dto.getDivision().getId());
+        assertEquals(entity.getDivision().getName(), dto.getDivision().getName());
+        assertEquals(181, dto.getVolume().volume());
+        assertEquals("High", dto.getVolume().description());
     }
 
     @Test
@@ -115,7 +129,7 @@ public class EmployeeMapperUnitTest {
 
         EmployeeDTO dto = mapper.employeeToEmployeeDTO(entity);
         SimpleDateFormat format = new SimpleDateFormat(DATE_FORMAT);
-        assertEquals(format.parse(dto.getEmployeeStartDt()).toString(), entity.getStartDt().toString());
+        assertEquals(entity.getStartDt().toString(), format.parse(dto.getEmployeeStartDt()).toString());
     }
 
     @Test

@@ -11,7 +11,8 @@ public class EmployeeDTO {
 
     private int employeeId;
     private String employeeName;
-    private int height;
+    private Integer height;
+    private String graduation;
     private DivisionDTO division;
     private String employeeStartDt;
     private String notMappedProperty;
